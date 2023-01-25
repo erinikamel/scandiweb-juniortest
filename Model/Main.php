@@ -2,8 +2,8 @@
 
 include '../Includes/autoloader.php';
 
-abstract class Main extends Dbh {
-
+abstract class Main extends Dbh 
+{
     protected $SKU;
     protected $name;
     protected $price;
@@ -22,5 +22,4 @@ abstract class Main extends Dbh {
     abstract protected function setProduct();
     abstract protected function getProducts();
     abstract protected function removeProduct($SKU);
-
 }

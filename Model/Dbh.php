@@ -1,8 +1,9 @@
 <?php
 
-abstract class Dbh {
-
-    protected function connect () {
+abstract class Dbh 
+{
+    protected function connect ()
+    {
         try {
             $username = "root";
             $password = "";

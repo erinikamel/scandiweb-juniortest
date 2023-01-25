@@ -2,8 +2,8 @@
 
 include '../Includes/autoloader.php';
 
-class Product extends Main {
-
+class Product extends Main 
+{
     protected function getSKU()
 	{
 		return $this->SKU;
@@ -45,14 +45,15 @@ class Product extends Main {
 	}
 
 	//Method to check if SKU already exists
-	protected function checkSKU($SKU){
+	protected function checkSKU($SKU)
+	{
 		$sql = 'SELECT SKU FROM product WHERE SKU = ?';
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute([$SKU]);
 		//Check if the statement returns data or not
 		if($stmt->rowCount() > 0) {
 			$result = false;
-		}else{
+		} else {
 			$result = true;
 		}
 		return $result;
@@ -87,5 +88,4 @@ class Product extends Main {
 		$stmt=$this->connect()->prepare($sql);
 	    $stmt->execute([$SKU]);
 	} 
-
 }

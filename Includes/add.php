@@ -86,7 +86,6 @@ if ((isset($_POST['save']))) {
         }
 
         $newProduct->addProduct($SKU, $name, $price, $type, $details);
-        
     } 
 }
 ?>

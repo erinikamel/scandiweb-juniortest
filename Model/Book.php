@@ -1,7 +1,7 @@
 <?php
 
-class Book extends Product {
-
+class Book extends Product 
+{
     private $weight;
 
     private function getWeight()
@@ -14,15 +14,14 @@ class Book extends Product {
 		$this->weight = $weight;
 	}
 
-    protected function saveSpecialAttrVals (string $SKU, array $details){
+    protected function saveSpecialAttrVals (string $SKU, array $details)
+    {
         if ($details['weight']) {
-
             $this->setSKU($SKU);
             $this->setWeight($details['weight']);
             $sql = "INSERT INTO book (sku, weight) VALUES (?, ?)";
 	        $stmt = $this->connect()->prepare($sql);
 	        $stmt->execute([$this->getSKU(), $this->getWeight()]);
-    
         }
     }
 }

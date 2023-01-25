@@ -9,5 +9,4 @@ class ProductsView extends Product
         $products = $this->getProducts();
         return $products;
     }
-
 }

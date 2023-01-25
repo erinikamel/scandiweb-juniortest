@@ -1,7 +1,7 @@
 <?php
 
-class Furniture extends Product {
-
+class Furniture extends Product 
+{
     private $height;
     private $width;
     private $length;
@@ -36,19 +36,16 @@ class Furniture extends Product {
 		$this->length = $length;
 	}
     
-
-    protected function saveSpecialAttrVals (string $SKU, array $details){
+    protected function saveSpecialAttrVals (string $SKU, array $details)
+	{
         if ($details['height']) {
-
             $this->setSKU($SKU);
             $this->setHeight($details['height']);
             $this->setWidth($details['width']);
             $this->setLength($details['length']);
-
             $sql = "INSERT INTO furniture (sku, height, width, length) VALUES (?, ?, ?, ?)";
 	        $stmt = $this->connect()->prepare($sql);
 	        $stmt->execute([$this->getSKU(), $this->getHeight(), $this->getWidth(),$this->getLength()]);
-    
         }
     }
 }
