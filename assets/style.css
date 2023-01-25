@@ -1,0 +1,214 @@
+.wrapper {
+  padding: 0 3rem;
+  background-color: hsl(72, 30%, 30%, 3%);
+}
+
+.strip {
+  background-color: #D96846;
+  border-radius: 0 0 0 0rem;
+  height: 4rem;
+}
+
+.stripTwo {
+  background-color: hsl(14, 66%, 56%, 40%);
+  border-radius: 0 0 0 0rem;
+  height: 1rem;
+}
+
+.stripThree {
+  background-color: hsl(14, 66%, 56%, 20%);
+  border-radius: 0 0 0 0rem;
+  height: 0.7rem;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0 0 0;
+}
+
+footer {
+  background-color: #596235;
+  padding:1rem;
+  height:100vh;
+}
+
+footer small {
+  color:white;
+}
+
+h2{
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  color: white;
+  padding: 1.7rem 3rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+}
+
+.btn {
+  text-transform: uppercase;
+  font-weight: 500;
+  height: 48px;
+  min-width: 78px;
+  line-height: 7px;
+  border-radius: 20rem;
+}
+
+.done-button{
+  outline: 1px dashed hsl(72, 30%, 30%, 60%);
+  box-shadow: 2px 2px 2px 0px #596235;
+}
+
+.x-button {
+  outline: 1px dashed hsl(14, 66%, 56%, 60%);
+  box-shadow: 2px 2px 1px 0px #D96846;
+}
+
+.done-button:hover {
+  outline: none;
+  box-shadow: none;
+  background: hsl(72, 30%, 30%, 80%);
+  color: white;
+}
+
+.x-button:hover {
+  outline: none;
+  box-shadow: none;
+  background: hsl(14, 66%, 56%, 80%);
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  z-index: 11;
+}
+
+.line {
+  margin: 1rem 0rem;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  background: rgba(214, 214, 214, 0.8);
+  padding: 2rem 0.7rem;
+}
+
+.card {
+  max-width: 250px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  border-radius: 5rem;
+  box-shadow: 2px 2px 3px 1px #9e9e9e;
+}
+
+.card:hover {
+  box-shadow: none;
+  background-color: hsl(72, 30%, 30%, 80%);
+  cursor: pointer;
+  color: white;
+}
+
+.card-text {
+  height: 140px;
+}
+
+label {
+  width: 140px;
+}
+
+input[type="checkbox"]{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1rem;
+  height: 1rem;
+}
+
+input[type="text"], select {
+  width: 14rem;
+  height: 2.6rem;
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 0.7rem;
+  padding: 0.7rem;
+}
+
+input:focus {
+  outline: 1px solid gray;
+}
+
+#Furniture input {
+  margin-bottom: 10px;
+}
+
+small {
+  color: #2F3020;
+  padding-top: 10px;
+  font-size: 15px;
+  width: 330px;
+}
+
+.typeSwitcherForm {
+  display: none;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 30px 0;
+  background-color: #eee;
+}
+
+.typeSwitcherForm label {
+  width: 120px;
+}
+
+.typeSwitcherForm input {
+  width: 12rem;
+}
+
+.inputError{
+  outline: 1px solid #D96846;
+}
+
+.error{
+  padding-top: 0.5rem;
+  font-size: smaller;
+  color: #D96846;
+}
+
+.errorMessage{
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  background-color: #D96846;
+  border-radius: 0.9rem;
+}
+
+.errorFormat{
+    padding: 1rem;
+}
+
+@media only screen and (max-width: 400px) {
+  .header-container {
+    display: block;
+    justify-content: space-evenly;
+    padding: 30px 0 0 0;
+  }
+
+  h2 {
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+
+  .buttons{
+    justify-content: center;
+  }
+
+}

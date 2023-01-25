@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /juniortest-eriny-youssef.com/
+RewriteRule ^index\.php＄ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /juniortest-eriny-youssef.com/index.php [L]
