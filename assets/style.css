@@ -60,11 +60,13 @@ h2{
 }
 
 .done-button{
+  border-radius: 20rem;
   outline: 1px dashed hsl(72, 30%, 30%, 60%);
   box-shadow: 2px 2px 2px 0px #596235;
 }
 
 .x-button {
+  border-radius: 20rem;
   outline: 1px dashed hsl(14, 66%, 56%, 60%);
   box-shadow: 2px 2px 1px 0px #D96846;
 }
