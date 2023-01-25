@@ -26,7 +26,7 @@
     <section>
         <div class="header-container">
             <div class="buttons">
-            <button class="btn done-button" onclick="location.href='/juniortest-eriny-youssef.com/add-product'" >ADD</button>
+            <button class="btn done-button" onclick="location.href='/juniortest-eriny-youssef.com/add-product'">ADD</button>
                 <form action="Includes/delete-products.php" method="POST" id="delete-form">
                     <button for="delete" name="delete" class="btn x-button">MASS DELETE</button>
                 </form>

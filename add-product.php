@@ -26,8 +26,8 @@
         <div class="header-container">
             <div class="buttons">
                 <form id="product_form" action="Includes/add.php" method="POST" name="product_form">
-                <button name ="save" id="save" type="submit" class="btn done-button">Save</button>
-                <button class="btn x-button" name ="cancel" id="cancel" onclick="location.href='/juniortest-eriny-youssef.com/'" >Cancel</button>
+                <button name ="save" id="save" type="submit" class="btn done-button">SAVE</button>
+                <button class="btn x-button" name ="cancel" id="cancel" onclick="location.href='/juniortest-eriny-youssef.com/'" >CANCEL</button>
             </div>
         </div>
     </section>
