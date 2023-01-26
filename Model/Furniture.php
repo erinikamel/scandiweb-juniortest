@@ -35,6 +35,16 @@ class Furniture extends Product
 	{
 		$this->length = $length;
 	}
+
+	protected function getSpecialAttrVals(string $SKU)
+    {
+        $sql = "SELECT CONCAT (height, 'x', width, 'x', length) as dimensions FROM furniture WHERE sku = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$SKU]);
+        $dimensions = $stmt->fetchColumn(0);
+		$result = 'Dimensions: ' . $dimensions . '"';
+        return $result;
+    }
     
     protected function saveSpecialAttrVals (string $SKU, array $details)
 	{
@@ -48,4 +58,5 @@ class Furniture extends Product
 	        $stmt->execute([$this->getSKU(), $this->getHeight(), $this->getWidth(),$this->getLength()]);
         }
     }
+
 }

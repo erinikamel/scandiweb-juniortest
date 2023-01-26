@@ -45,12 +45,7 @@
                         <?= $product['SKU']; ?> <br>
                         <?= $product['name']; ?> <br>
                         <?= $product['price']; ?> $ <br>
-                        <?php if(($product['size'])){
-                        echo 'Size: ' . $product['size'] . ' MB';} ?> 
-                        <?php if(($product['weight'])){
-                        echo 'Weight: ' . $product['weight'] . ' KG';} ?> 
-                        <?php if(($product['dimensions'])){
-                        echo 'Dimensions: ' . $product['dimensions'] . '"';} ?> 
+                        <?= $product['attr']; ?> 
                         </div>
                     </div>
                 </div>

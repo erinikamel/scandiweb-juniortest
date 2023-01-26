@@ -72,12 +72,18 @@ class Product extends Main
 	protected function saveSpecialAttrVals (string $SKU, array $details){}
 
 	//Method to retrieve products from database
-	protected function getProducts()
+	public function getProducts()
 	{
-		$sql = "SELECT  p.SKU, name, type, price, weight, size, CONCAT (height, 'x', width, 'x', length) as dimensions FROM product p LEFT JOIN book b ON p.SKU = b.SKU LEFT JOIN dvd d ON p.SKU = d.SKU LEFT JOIN furniture f ON p.SKU=f.SKU ORDER BY p.id";
+		$sql = "SELECT  SKU, name, type, price FROM product ORDER BY id";
 	    $stmt = $this->connect()->prepare($sql);
 	    $stmt->execute();
         $products = $stmt->fetchAll();
+		//Retrieve type-speciic attributes using child class method
+		foreach ($products as $key => $product) {
+			$className = $product["type"];
+            $newType = new $className();
+			$products [$key]['attr'] = $newType->getSpecialAttrVals($product['SKU']);
+		}
         return $products;
 	}
 
@@ -89,3 +95,6 @@ class Product extends Main
 	    $stmt->execute([$SKU]);
 	} 
 }
+
+$products= new Product();
+$products -> getProducts();

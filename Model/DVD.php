@@ -14,6 +14,16 @@ class DVD extends Product
 		$this->size = $size;
 	}
 
+    protected function getSpecialAttrVals(string $SKU)
+    {
+        $sql = "SELECT size FROM dvd WHERE sku = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$SKU]);
+        $size = $stmt->fetchColumn(0);
+        $result = 'Size: ' . $size . ' MB';
+        return $result;
+    }
+
     protected function saveSpecialAttrVals (string $SKU, array $details)
     {
         if ($details['size']) {
