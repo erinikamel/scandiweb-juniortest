@@ -65,7 +65,6 @@ class Product extends Main
 		$sql = "INSERT INTO product (sku, name, price, type) VALUES (?, ?, ?, ?)";
 	    $stmt = $this->connect()->prepare($sql);
 	    $stmt->execute([$this->getSKU(), $this->getName(), $this->getPrice(), $this->getType()]);
-
 	}
 
 	//Method to insert added product type-specific attribute values to corressponding type class in database
@@ -74,17 +73,17 @@ class Product extends Main
 	//Method to retrieve products from database
 	public function getProducts()
 	{
-		$sql = "SELECT  SKU, name, type, price FROM product ORDER BY id";
+		$sql = "SELECT * FROM product ORDER BY id";
+		$sql = "SELECT p.SKU, name, type, price, weight, size, dimensions FROM product p LEFT JOIN book b ON p.SKU = b.SKU LEFT JOIN dvd d ON p.SKU = d.SKU LEFT JOIN furniture f ON p.SKU=f.SKU ORDER BY p.id";
 	    $stmt = $this->connect()->prepare($sql);
 	    $stmt->execute();
-        $products = $stmt->fetchAll();
-		//Retrieve type-speciic attributes using child class method
-		foreach ($products as $key => $product) {
-			$className = $product["type"];
-            $newType = new $className();
-			$products [$key]['attr'] = $newType->getSpecialAttrVals($product['SKU']);
+        $results = $stmt->fetchAll();
+		//Return type-specific attributes
+		$products = [];
+		foreach ($results as $key => $result) {
+			$products[]= array_filter($result, fn ($value) => !empty($value));
 		}
-        return $products;
+        return $results;
 	}
 
 	//Method to remove products from database
@@ -95,6 +94,3 @@ class Product extends Main
 	    $stmt->execute([$SKU]);
 	} 
 }
-
-$products= new Product();
-$products -> getProducts();

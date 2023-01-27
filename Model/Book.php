@@ -9,26 +9,17 @@ class Book extends Product
         return $this->weight;
     }
     
-    private function setWeight(int $weight)
+    private function setWeight($weight)
 	{
 		$this->weight = $weight;
 	}
-
-    protected function getSpecialAttrVals(string $SKU)
-    {
-        $sql = "SELECT weight FROM book WHERE sku = ?";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$SKU]);
-        $weight = $stmt->fetchColumn(0);
-        $result = 'Weight: ' . $weight . ' KG';
-        return $result;
-    }
-
+    
     protected function saveSpecialAttrVals (string $SKU, array $details)
     {
         if ($details['weight']) {
+            $weight = 'Weight: '. $details['weight'] . ' KG';
             $this->setSKU($SKU);
-            $this->setWeight($details['weight']);
+            $this->setWeight($weight);
             $sql = "INSERT INTO book (sku, weight) VALUES (?, ?)";
 	        $stmt = $this->connect()->prepare($sql);
 	        $stmt->execute([$this->getSKU(), $this->getWeight()]);

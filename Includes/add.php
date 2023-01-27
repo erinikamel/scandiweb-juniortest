@@ -17,7 +17,7 @@ if ((isset($_POST['save']))) {
 
     //Declaring variable to check for required input
     $requiredInput = [$SKU, $name, $price, $type];
-    $requiredAttr = [${'attr' . $type}];
+    $requiredAttr = ${'attr' . $type};
 
     //Declaring array of only the selected values of the type-specific attribute
     $details =[];
@@ -48,9 +48,13 @@ if ((isset($_POST['save']))) {
     }
 
     foreach ($requiredAttr as $key => $input) {
-        if (empty($input) && $input != "0") {
+        if (empty($input) && $input != "0" ) {
             $emptyError = true;
         }
+    }
+
+    if (empty($requiredAttr) && $requiredAttr != "0" ) {
+        $emptyError = true;
     }
 
     //Check for correct SKU format

@@ -40,16 +40,19 @@
                 <div class="col-lg-3 col-md-5 col-sm-6 pb-3">
                     <div class="card">
                         <div class="card-body">
-                                <input form="delete-form" type="checkbox" class="delete-checkbox" name="checked[]" value="<?= $product['SKU']; ?>"></p>
-                        <p class="card-text text-center">
+                                <input form="delete-form" type="checkbox" class="delete-checkbox mt-3" name="checked[]" value="<?= $product['SKU']; ?>"></p>
+                        <p class="card-text text-center mt-3">
                         <?= $product['SKU']; ?> <br>
                         <?= $product['name']; ?> <br>
                         <?= $product['price']; ?> $ <br>
-                        <?= $product['attr']; ?> 
+                        <?= $product['size']; ?>
+                        <?= $product['weight']; ?>
+                        <?= $product['dimensions']; ?>
+                        </p>
                         </div>
                     </div>
                 </div>
-            <?php endforeach ?>
+            <?php endforeach; ?>
         </div> 
     </section>
 </div>
