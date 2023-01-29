@@ -13,7 +13,7 @@ class Book extends Product
 	{
 		$this->weight = $weight;
 	}
-    
+
     protected function saveSpecialAttrVals (string $SKU, array $details)
     {
         if ($details['weight']) {

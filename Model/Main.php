@@ -17,9 +17,9 @@ abstract class Main extends Dbh
     abstract protected function setName(string $name);
     abstract protected function setPrice(int $price);
     abstract protected function setType(string $type);
-    abstract protected function checkSKU($SKU);
+    abstract protected function checkSKU(string $SKU);
     abstract protected function saveSpecialAttrVals(string $SKU, array $details);
     abstract protected function setProduct();
     abstract protected function getProducts();
-    abstract protected function removeProduct($SKU);
+    abstract protected function removeProduct(string $SKU);
 }
