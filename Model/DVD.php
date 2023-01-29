@@ -16,13 +16,10 @@ class DVD extends Product
 
     protected function saveSpecialAttrVals (string $SKU, array $details)
     {
-        if ($details['size']) {
-            $size = 'Size: '. $details['size'] . ' MB';
-            $this->setSKU($SKU);
-            $this->setSize($size);
-            $sql = "INSERT INTO dvd (sku, size) VALUES (?, ?)";
-	        $stmt = $this->connect()->prepare($sql);
-	        $stmt->execute([$this->getSKU(), $this->getSize()]);
-        }
+        $size = 'Size: '. $details['size'] . ' MB';
+        $this->setSize($size);
+        $sql = "INSERT INTO dvd (sku, size) VALUES (?, ?)";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$SKU, $this->getSize()]);
     }
 }

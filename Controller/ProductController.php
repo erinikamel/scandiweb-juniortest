@@ -22,9 +22,9 @@ class ProductController extends Product
             $newType = new $className();
             $newType->saveSpecialAttrVals($SKU, $details);
             //Save value of result to check whether the product was saved successfully or not (used in Ajax to redirect to product list page after successsful saving)
-            $result = false;
-        } else {
             $result = true;
+        } else {
+            $result = false;
         }
             return $result;
     }

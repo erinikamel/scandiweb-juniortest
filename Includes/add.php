@@ -4,7 +4,7 @@ include '../Includes/autoloader.php';
 
 //Check if save button exists and request is sent
 if ((isset($_POST['save']))) {
-    error_reporting(0);
+    // error_reporting(0);
 
     //Grabbing user input
     $SKU = $_POST["sku"];
@@ -85,7 +85,7 @@ if ((isset($_POST['save']))) {
 
         //Save submission success or  failure status to use for redirection in Ajax
         $SKUTaken = $newProduct->addProduct($SKU, $name, $price, $type, $details);
-        if ($SKUTaken == false) {
+        if ($SKUTaken == true) {
             $successfulSubmit = true;
         }
 
