@@ -17,7 +17,7 @@ class Furniture extends Product
     protected function saveSpecialAttrVals (string $SKU, array $details)
 	{
         if ($details['height']) {
-			$dimensions = 'Dimensions: '. $details['height'] . 'x' . $details['width'] . 'x' .$details['length']. '"';
+			$dimensions = 'Dimensions: '. $details['height'] . 'x' . $details['width'] . 'x' .$details['length']. ' CM';
             $this->setSKU($SKU);
             $this->setDimensions($dimensions);
             $sql = "INSERT INTO furniture (sku, dimensions) VALUES (?, ?)";
