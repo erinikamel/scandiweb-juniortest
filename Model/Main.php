@@ -4,11 +4,6 @@ include '../Includes/autoloader.php';
 
 abstract class Main extends Dbh 
 {
-    protected $SKU;
-    protected $name;
-    protected $price;
-    protected $type;
-  
     abstract protected function getSKU();
     abstract protected function getName();
     abstract protected function getPrice();

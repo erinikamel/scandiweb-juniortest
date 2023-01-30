@@ -4,6 +4,11 @@ include '../Includes/autoloader.php';
 
 class Product extends Main 
 {
+	private $SKU;
+    private $name;
+    private $price;
+    private $type;
+  
     protected function getSKU()
 	{
 		return $this->SKU;
