@@ -72,35 +72,45 @@ class Product extends Main
 
 	//Method to insert added product type-specific attribute values to corressponding type class in database
 	protected function saveSpecialAttrVals (string $SKU, array $details){}
-
-	
-	public function replace_key($arr, array $oldkeys, $newkey) {
-		foreach ($oldkeys as $oldkey)
-		{if(array_key_exists( $oldkey, $arr)) {
-			$keys = array_keys($arr);
-			$keys[array_search($oldkey, $keys)] = $newkey;
-			return array_combine($keys, $arr);	
-		}}
-		return $arr;    
-	}
 	
 	//Method to retrieve products from database
 	public function getProducts()
 	{
-		$sql = "SELECT p.*, b.weight, d.size, f.dimensions FROM product p LEFT JOIN book b ON p.SKU = b.SKU LEFT JOIN dvd d ON p.SKU = d.SKU LEFT JOIN furniture f ON p.SKU=f.SKU ORDER BY p.id";
+		//USe COALESCE() function to return only the type-specific attribute with a value (not null)
+		$sql = "SELECT p.*, COALESCE(concat ('Weight: ', b.weight, ' KG'), concat ('Size: ', d.size, ' MB'), concat ('Dimensions: ', f.height, 'x', f.width, 'x', f.length, ' CM')) AS attr  FROM product p LEFT JOIN book b ON p.SKU = b.SKU LEFT JOIN dvd d ON p.SKU = d.SKU LEFT JOIN furniture f ON p.SKU=f.SKU ORDER BY p.id";
 	    $stmt = $this->connect()->prepare($sql);
 	    $stmt->execute();
         $results = $stmt->fetchAll();
-		//Return type-specific attributes
-		$products = [];
-		foreach ($results as $key => $result) {
-			$filtered= array_filter($result, fn ($value) => !empty($value));
-			$oldkeys = ["size", "weight", "dimensions"];
-			$products []= $this->replace_key($filtered, $oldkeys, 'attr');
-		}
-        return $products;
+        return $results;
 	}
 
+//  //Another Method to retrieve products from database
+	// public function getProducts()
+	// {
+	// 	$sql = "SELECT p.*, b.weight, d.size, f.dimensions FROM product p LEFT JOIN book b ON p.SKU = b.SKU LEFT JOIN dvd d ON p.SKU = d.SKU LEFT JOIN furniture f ON p.SKU=f.SKU ORDER BY p.id";
+	//     $stmt = $this->connect()->prepare($sql);
+	//     $stmt->execute();
+    //     $results = $stmt->fetchAll();
+	// 	//Return type-specific attributes
+	// 	$products = [];
+	// 	foreach ($results as $key => $result) {
+	// 		$filtered= array_filter($result, fn ($value) => !empty($value));
+	// 		$oldkeys = ["size", "weight", "dimensions"];
+	// 		$products []= $this->replace_key($filtered, $oldkeys, 'attr');
+	// 	}
+    //     return $products;
+	// }
+
+			// public function replace_key($arr, array $oldkeys, $newkey) {
+	// 	foreach ($oldkeys as $oldkey)
+	// 	{if(array_key_exists( $oldkey, $arr)) {
+	// 		$keys = array_keys($arr);
+	// 		$keys[array_search($oldkey, $keys)] = $newkey;
+	// 		return array_combine($keys, $arr);	
+	// 	}}
+	// 	return $arr;    
+// }
+	
 	//Method to remove products from database
 	protected function removeProduct($SKU)
 	{

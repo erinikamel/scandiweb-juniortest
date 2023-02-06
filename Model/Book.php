@@ -16,8 +16,7 @@ class Book extends Product
 
     protected function saveSpecialAttrVals (string $SKU, array $details)
     {
-        $weight = 'Weight: '. $details['weight'] . ' KG';
-        $this->setWeight($weight);
+        $this->setWeight($details['weight']);
         $sql = "INSERT INTO book (sku, weight) VALUES (?, ?)";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$SKU, $this->getWeight()]);

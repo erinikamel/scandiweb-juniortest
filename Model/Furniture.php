@@ -2,24 +2,47 @@
 
 class Furniture extends Product 
 {
-    private $dimensions;
+    private $height;
+    private $width;
+    private $length;
 
-    private function getDimensions()
+    private function getHeight()
 	{
-		return $this->dimensions;
+		return $this->height;
 	}
 
-    private function setDimensions($dimensions)
+    private function getWidth()
 	{
-		$this->dimensions = $dimensions;
+		return $this->width;
+	}
+
+    private function getLength()
+	{
+		return $this->length;
+	}
+
+    private function setHeight($height)
+	{
+		$this->height = $height;
+	}
+    
+    private function setWidth($width)
+	{
+		$this->width = $width;
+	}
+    
+    private function setLength($length)
+	{
+		$this->length = $length;
 	}
     
     protected function saveSpecialAttrVals (string $SKU, array $details)
 	{
-        $dimensions = 'Dimensions: '. $details['height'] . 'x' . $details['width'] . 'x' .$details['length']. ' CM';
-        $this->setDimensions($dimensions);
-        $sql = "INSERT INTO furniture (sku, dimensions) VALUES (?, ?)";
+        $this->setHeight($details['height'] );
+        $this->setWidth($details['width']);
+        $this->setLength($details['length']);
+        $sql = "INSERT INTO furniture (sku, height, width, length) VALUES (?, ?, ?, ?)";
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$SKU, $this->getDimensions()]);
+        $stmt->execute([$SKU, $this->getHeight(), $this->getWidth(), $this->getLength()]);
     }
 }
