@@ -5,7 +5,7 @@
 
  $products = new ProductsView();
  $results = $products->displayProducts();
-?>
+ ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

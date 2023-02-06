@@ -78,7 +78,6 @@ class Product extends Main
 	//Method to retrieve products from database
 	public function getProducts()
 	{
-		$sql = "SELECT * FROM product ORDER BY id";
 		$sql = "SELECT p.SKU, name, type, price, weight, size, dimensions FROM product p LEFT JOIN book b ON p.SKU = b.SKU LEFT JOIN dvd d ON p.SKU = d.SKU LEFT JOIN furniture f ON p.SKU=f.SKU ORDER BY p.id";
 	    $stmt = $this->connect()->prepare($sql);
 	    $stmt->execute();
