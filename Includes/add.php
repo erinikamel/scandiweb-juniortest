@@ -4,7 +4,7 @@ include 'autoloader.php';
 
 //Check if save button exists and request is sent
 if ((isset($_POST['save']))) {
-    // error_reporting(0);
+    error_reporting(0);
 
     //Grabbing user input
     $SKU = $_POST["sku"];

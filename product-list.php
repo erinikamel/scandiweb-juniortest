@@ -1,7 +1,7 @@
 <?php
  include 'Includes/autoloader.php';
 
-//  error_reporting(0);
+ error_reporting(0);
 
  $products = new ProductsView();
  $results = $products->displayProducts();
