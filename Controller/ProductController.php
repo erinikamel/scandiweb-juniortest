@@ -1,7 +1,5 @@
 <?php
 
-include '../Includes/autoloader.php';
-
 class ProductController extends Product 
 {
     //Method to add a new product

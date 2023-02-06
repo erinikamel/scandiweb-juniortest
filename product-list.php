@@ -1,7 +1,7 @@
 <?php
- include './Includes/autoloader.php';
+ include 'Includes/autoloader.php';
 
- error_reporting(0);
+//  error_reporting(0);
 
  $products = new ProductsView();
  $results = $products->displayProducts();
@@ -45,9 +45,7 @@
                         <?= $product['SKU']; ?> <br>
                         <?= $product['name']; ?> <br>
                         <?= $product['price']; ?> $ <br>
-                        <?= $product['size']; ?>
-                        <?= $product['weight']; ?>
-                        <?= $product['dimensions']; ?>
+                        <?= $product['attr']; ?>
                         </p>
                         </div>
                     </div>

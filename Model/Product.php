@@ -1,7 +1,5 @@
 <?php
 
-include '../Includes/autoloader.php';
-
 class Product extends Main 
 {
 	private $SKU;
@@ -75,19 +73,32 @@ class Product extends Main
 	//Method to insert added product type-specific attribute values to corressponding type class in database
 	protected function saveSpecialAttrVals (string $SKU, array $details){}
 
+	
+	public function replace_key($arr, array $oldkeys, $newkey) {
+		foreach ($oldkeys as $oldkey)
+		{if(array_key_exists( $oldkey, $arr)) {
+			$keys = array_keys($arr);
+			$keys[array_search($oldkey, $keys)] = $newkey;
+			return array_combine($keys, $arr);	
+		}}
+		return $arr;    
+	}
+	
 	//Method to retrieve products from database
 	public function getProducts()
 	{
-		$sql = "SELECT p.SKU, name, type, price, weight, size, dimensions FROM product p LEFT JOIN book b ON p.SKU = b.SKU LEFT JOIN dvd d ON p.SKU = d.SKU LEFT JOIN furniture f ON p.SKU=f.SKU ORDER BY p.id";
+		$sql = "SELECT p.*, b.weight, d.size, f.dimensions FROM product p LEFT JOIN book b ON p.SKU = b.SKU LEFT JOIN dvd d ON p.SKU = d.SKU LEFT JOIN furniture f ON p.SKU=f.SKU ORDER BY p.id";
 	    $stmt = $this->connect()->prepare($sql);
 	    $stmt->execute();
         $results = $stmt->fetchAll();
 		//Return type-specific attributes
 		$products = [];
 		foreach ($results as $key => $result) {
-			$products[]= array_filter($result, fn ($value) => !empty($value));
+			$filtered= array_filter($result, fn ($value) => !empty($value));
+			$oldkeys = ["size", "weight", "dimensions"];
+			$products []= $this->replace_key($filtered, $oldkeys, 'attr');
 		}
-        return $results;
+        return $products;
 	}
 
 	//Method to remove products from database

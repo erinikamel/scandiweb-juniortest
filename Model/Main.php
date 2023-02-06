@@ -1,7 +1,5 @@
 <?php
 
-include '../Includes/autoloader.php';
-
 abstract class Main extends Dbh 
 {
     abstract protected function getSKU();
