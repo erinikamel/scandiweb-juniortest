@@ -32,9 +32,7 @@ $(document).ready(function() {
             length, length,
             save: save
         }, function (responseText){
-            
-                  if (responseText.search('successfulSubmit = "1"') > 0) {
-                    
+                if (responseText.search('successfulSubmit = "1"') > 0) {
                     window.location.href= "/juniortest-eriny-youssef.com/"
             }
         })

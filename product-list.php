@@ -1,10 +1,8 @@
 <?php
  include 'Includes/autoloader.php';
-
  error_reporting(0);
-
- $products = new ProductsView();
- $results = $products->displayProducts();
+ $results = new ProductsView();
+ $products = $results->displayProducts();
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +26,7 @@
             <div class="buttons">
             <button class="btn done-button" onclick="location.href='/juniortest-eriny-youssef.com/add-product'">ADD</button>
                 <form action="Includes/delete-products.php" method="POST" id="delete-form">
-                    <button for="delete" name="delete" class="btn x-button">MASS DELETE</button>
+                    <button name="delete" class="btn x-button">MASS DELETE</button>
                 </form>
             </div>
         </div>
@@ -36,11 +34,11 @@
     <hr class="line">
     <section class="cards my-3">
         <div class="row">
-            <?php foreach ($results as $product): ?> 
+            <?php foreach ($products as $product): ?> 
                 <div class="col-lg-3 col-md-5 col-sm-6 pb-3">
                     <div class="card">
                         <div class="card-body">
-                                <input form="delete-form" type="checkbox" class="delete-checkbox mt-3" name="checked[]" value="<?= $product['SKU']; ?>"></p>
+                            <input form="delete-form" type="checkbox" class="delete-checkbox mt-3" name="checked[]" value="<?= $product['SKU']; ?>"></p>
                         <p class="card-text text-center mt-3">
                         <?= $product['SKU']; ?> <br>
                         <?= $product['name']; ?> <br>

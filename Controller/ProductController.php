@@ -6,7 +6,7 @@ class ProductController extends Product
     public function addProduct ($SKU, $name, $price, $type, $details)
     {
         //Check for unique SKU
-        if ($this->checkSKU($SKU) == true) {
+        if ($this->checkSKU($SKU) == false) {
             //Instantiating the product class to use its "set product" method
             $newProduct = new Product();
             $newProduct->setSKU($SKU);
@@ -16,7 +16,7 @@ class ProductController extends Product
             $newProduct->setProduct();
 
             //Instantiating the type class to use its "save special attribute values" method
-            $className = $_POST["productType"];
+            $className = $type;
             $newType = new $className();
             $newType->saveSpecialAttrVals($SKU, $details);
             //Save value of result to check whether the product was saved successfully or not (used in Ajax to redirect to product list page after successsful saving)
@@ -30,8 +30,7 @@ class ProductController extends Product
     //Function to delete selected products
     public function deleteProduct($SKU)
     {
-        //Instantiating the product class to use its "remove product" method
-		$itemToDelete = new Product();
-        $itemToDelete->removeProduct($SKU);
+        //Using the inherited "remove product" method from Product class
+        $this->removeProduct($SKU);
 	}
 }

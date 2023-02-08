@@ -37,7 +37,7 @@ class Product extends Main
 		$this->name = $name;
 	}
 
-    protected function setPrice(int $price)
+    protected function setPrice($price)
 	{
 		$this->price = $price;
 	}
@@ -48,18 +48,18 @@ class Product extends Main
 	}
 
 	//Method to check if SKU already exists
-	protected function checkSKU($SKU)
+	public function checkSKU($SKU)
 	{
 		$sql = 'SELECT SKU FROM product WHERE SKU = ?';
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute([$SKU]);
-		//Check if the statement returns data or not
+		//Check if the statement returns records or not
 		if($stmt->rowCount() > 0) {
-			$result = false;
+			$SKUTaken = true;
 		} else {
-			$result = true;
+			$SKUTaken = false;
 		}
-		return $result;
+		return $SKUTaken;
 	}
 
 	//Method to insert added product to database
@@ -77,9 +77,8 @@ class Product extends Main
 	public function getProducts()
 	{
 		//USe COALESCE() function to return only the type-specific attribute with a value (not null)
-		$sql = "SELECT p.*, COALESCE(concat ('Weight: ', b.weight, ' KG'), concat ('Size: ', d.size, ' MB'), concat ('Dimensions: ', f.height, 'x', f.width, 'x', f.length, ' CM')) AS attr  FROM product p LEFT JOIN book b ON p.SKU = b.SKU LEFT JOIN dvd d ON p.SKU = d.SKU LEFT JOIN furniture f ON p.SKU=f.SKU ORDER BY p.id";
-	    $stmt = $this->connect()->prepare($sql);
-	    $stmt->execute();
+		$sql = "SELECT p.*, COALESCE(concat ('Weight: ', b.weight, ' KG'), concat ('Size: ', d.size, ' MB'), concat ('Dimensions: ', f.height, 'x', f.width, 'x', f.length, ' CM')) AS attr FROM product p LEFT JOIN book b ON p.SKU = b.SKU LEFT JOIN dvd d ON p.SKU = d.SKU LEFT JOIN furniture f ON p.SKU=f.SKU ORDER BY p.id";
+	    $stmt = $this->connect()->query($sql);
         $results = $stmt->fetchAll();
         return $results;
 	}
@@ -96,19 +95,19 @@ class Product extends Main
 	// 	foreach ($results as $key => $result) {
 	// 		$filtered= array_filter($result, fn ($value) => !empty($value));
 	// 		$oldkeys = ["size", "weight", "dimensions"];
-	// 		$products []= $this->replace_key($filtered, $oldkeys, 'attr');
+	// 		$products []= $this->changeKey($filtered, $oldkeys, 'attr');
 	// 	}
     //     return $products;
 	// }
 
-			// public function replace_key($arr, array $oldkeys, $newkey) {
+			// public function changeKey($array, array $oldkeys, $newkey) {
 	// 	foreach ($oldkeys as $oldkey)
-	// 	{if(array_key_exists( $oldkey, $arr)) {
-	// 		$keys = array_keys($arr);
+	// 	{if(array_key_exists( $oldkey, $array)) {
+	// 		$keys = array_keys($array);
 	// 		$keys[array_search($oldkey, $keys)] = $newkey;
-	// 		return array_combine($keys, $arr);	
+	// 		return array_combine($keys, $array);	
 	// 	}}
-	// 	return $arr;    
+	// 	return $array;    
 // }
 	
 	//Method to remove products from database

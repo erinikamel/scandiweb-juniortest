@@ -1,6 +1,6 @@
 <?php
 
-include '../Includes/autoloader.php';
+include 'autoloader.php';
 
 //Check if mass delete button exists, request is sent, and items are selected (at least one check box checked)
 if (isset($_POST["delete"]) && isset($_POST["checked"])) {
@@ -14,8 +14,7 @@ if (isset($_POST["delete"]) && isset($_POST["checked"])) {
     }
     
    //Redirection
-   header('Location: /juniortest-eriny-youssef.com');
+   header('Location: /juniortest-eriny-youssef.com/');
 } else {
-    
     header('Location: /juniortest-eriny-youssef.com/');
 }

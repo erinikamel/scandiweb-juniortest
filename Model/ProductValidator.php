@@ -47,8 +47,8 @@ class ProductValidator
     //Method to check float Format
     public function checkFloat ($value)
     {
-        //Check for an input that is a float of a value bigger than zero
-        if((floatval($value) <= 0 || !filter_var($value, FILTER_VALIDATE_FLOAT))) {
+        //Check for an input that is a float of a value larger than zero
+        if((!filter_var($value, FILTER_VALIDATE_FLOAT)) || $value <= 0) {
             return false;
         } else {
             return true;
